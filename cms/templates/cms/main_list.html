@@ -6,7 +6,23 @@
 </head>
 <body>
     <div>
-        <p>Gotta start somewhere</p>
+        <p>Companies in alphabetic order + their stock price</p>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Stock Price</th>
+                <th>Owner</th>
+                <th>Creator</th>
+            </tr>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.name }}</td>
+                <td>{{ company.stock_price }}$</td>
+                <td>{{ company.owner }}</td>
+                <td>{{ company.creator }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     </div>
 
 </body>
