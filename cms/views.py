@@ -1,11 +1,25 @@
 from django.shortcuts import render, redirect
 from .models import Company
+from .forms import CompanyForm
 
 # Create your views here.
 def main_list(request):
-    if request.user.is_authenticated():
-        # grab all added companies in alphabetical order
-        companies = Company.objects.all().order_by('name')
-        return render(request, 'cms/main_list.html', {'companies': companies})
+    companies = Company.objects.all().order_by('name')
+    return render(request, 'cms/main_list.html', {'companies': companies})
+
+# early working version of add_new
+# def add_new(request):
+#     form = CompanyForm()
+#     return render(request, 'cms/company_add.html', {'form': form})
+
+def add_new(request):
+    if request.method == "POST":
+        form = CompanyForm(request.POST)
+        if form.is_valid():
+            company = form.save(commit=False)
+            company.creator = request.user
+            company.save()
+            return redirect('main_list')
     else:
-        return render(request, 'registration2/login.html')
+        form = CompanyForm()
+    return render(request, 'cms/company_add.html', {'form': form})

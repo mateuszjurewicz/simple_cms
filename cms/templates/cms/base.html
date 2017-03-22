@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/cms.css' %}">
 </head>
 <body>
+    <div class="page-header">
+        <a href="{% url 'add_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">Add Company</span></a>
+    </div>
+    <div class="content container">
     {% block content %}
     {% endblock %}
+    </div>
 </body>
 </html>
