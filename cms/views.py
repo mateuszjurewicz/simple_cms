@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Company
 from .forms import CompanyForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def main_list(request):
     companies = Company.objects.all().order_by('name')
-    return render(request, 'cms/main_list.html', {'companies': companies})
+    users = User.objects.all()
+    return render(request, 'cms/main_list.html', {'companies': companies, 'users': users})
 
 # early working version of add_new
 # def add_new(request):

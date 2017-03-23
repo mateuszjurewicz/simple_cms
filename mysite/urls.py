@@ -21,7 +21,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home', include('cms.urls'), name='home'),
-    # here come the login views
+    # here comes the login views
     url(r'', auth_views.login, name='login'),
     # for logging out
     # url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
