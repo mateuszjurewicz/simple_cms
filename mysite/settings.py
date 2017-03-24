@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'h%8m+6lmgshig@q-&8r$1u$4&xu2)hzbmb9jp(3i+y3gjz02&f'
 DEBUG = True
 
 ALLOWED_HOSTS = ['cmsdemo.pythonanywhere.com', 'localhost']
-
 
 # Application definition
 
@@ -40,8 +38,7 @@ INSTALLED_APPS = [
     'cms',
 ]
 
-# had to change MIDDLEWARE to MIDDLEWARE_CLASSES for post-authentication redirect to work
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,7 +68,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -81,7 +77,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -101,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -115,7 +109,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -128,3 +121,4 @@ STATICFILES_DIRS = (
 
 # for redirecting user after successful authentication
 LOGIN_REDIRECT_URL = 'main_list'
+LOGOUT_REDIRECT_URL = 'login'
