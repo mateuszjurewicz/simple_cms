@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def main_list(request):
     companies = Company.objects.all().order_by('name')
-    users = User.objects.all()
+    users = User.objects.all().order_by('username')
     return render(request, 'cms/main_list.html', {'companies': companies, 'users': users})
 
 @login_required
