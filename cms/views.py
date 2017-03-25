@@ -43,9 +43,9 @@ def add_user(request):
     return render(request, 'cms/user_add.html', {'form': form})
 
 
-# Disabling users
+# Activating and deactivating users (switching is_active status)
 @login_required
-def disable_user(request):
+def switch_status(request):
     if request.method == 'POST':
         to_be_switched = request.POST.get('name_of_user')
         user = User.objects.get(username=to_be_switched)

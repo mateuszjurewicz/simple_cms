@@ -16,6 +16,7 @@
     <div class="page-header">
         <a href="{% url 'add_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">Add Company</span></a>
         <a href="{% url 'logout' %}">logout</a>
+        <p> Logged in user: {{ request.user.username }}</p>
     </div>
     <div class="content container">
     {% block content %}

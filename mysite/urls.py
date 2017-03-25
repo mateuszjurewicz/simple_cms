@@ -24,11 +24,14 @@ from django.contrib.auth.forms import UserCreationForm
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', include('cms.urls'), name='home'),
+    # change password
+    url('^change-password/$', auth_views.password_change, {'post_change_redirect': 'main_list'},
+        name='password_change'),
     # register user
     url('^register/', CreateView.as_view(
-            template_name='registration/register.html',
-            form_class=UserCreationForm,
-            success_url='/'), name='register'),
+        template_name='registration/register.html',
+        form_class=UserCreationForm,
+        success_url='/'), name='register'),
     # login and logout
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'', auth_views.login, name='login'),

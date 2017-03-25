@@ -45,7 +45,7 @@ $(document).ready(function() {
 
         // Send the request to our deactivate user view (Django)
         $.ajax({
-            url: "disable/user/",
+            url: "switch/status/",
             type: "POST",
             dataType: "json",
             data: {
