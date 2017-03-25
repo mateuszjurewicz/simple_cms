@@ -13,7 +13,6 @@ class CompanyForm(forms.ModelForm):
 
 # for adding new users from main list (as opposed to registering when not logged in)
 class MyUserForm(UserCreationForm):
-
     class Meta:
         model = User
         fields = ('username',)

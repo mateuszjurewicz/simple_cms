@@ -4,7 +4,7 @@ from .forms import CompanyForm
 from .forms import MyUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+import json
 
 # Create your views here.
 @login_required
@@ -14,6 +14,7 @@ def main_list(request):
     return render(request, 'cms/main_list.html', {'companies': companies, 'users': users})
 
 
+# Adding new companies
 @login_required
 def add_new(request):
     if request.method == "POST":
@@ -28,6 +29,7 @@ def add_new(request):
     return render(request, 'cms/company_add.html', {'form': form})
 
 
+# Adding new users
 @login_required
 def add_user(request):
     if request.method == "POST":
@@ -39,3 +41,15 @@ def add_user(request):
     else:
         form = MyUserForm()
     return render(request, 'cms/user_add.html', {'form': form})
+
+
+# Disabling users
+@login_required
+def disable_user(request):
+    if request.method == 'POST':
+        to_be_switched = request.POST.get('name_of_user')
+        user = User.objects.get(username=to_be_switched)
+        if user.is_active:
+            User.objects.filter(username=to_be_switched).update(is_active=False)
+        elif not user.is_active:
+            User.objects.filter(username=to_be_switched).update(is_active=True)
