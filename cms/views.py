@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import json
 
+
 # Create your views here.
 @login_required
 def main_list(request):

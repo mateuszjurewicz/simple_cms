@@ -1,45 +1,47 @@
 {% extends 'cms/base.html' %}
 
 {% block content %}
-    <h1>Companies</h1>
-    <table>
-        <tr>
+<h1>Companies</h1>
+<table>
+    <tr>
 
-            <th>Name</th>
-            <th>Stock Price</th>
-            <th>Owner</th>
-            <th>Creator</th>
-        </tr>
+        <th>Name</th>
+        <th>Stock Price</th>
+        <th>Owner</th>
+        <th>Creator</th>
+    </tr>
     {% for company in companies %}
-        <tr>
-            <td>{{ company.name }}</td>
-            <td>{{ company.stock_price }}$</td>
-            <td>{{ company.owner }}</td>
-            <td>{{ company.creator }}</td>
-        </tr>
+    <tr>
+        <td>{{ company.name }}</td>
+        <td>{{ company.stock_price }}$</td>
+        <td>{{ company.owner }}</td>
+        <td>{{ company.creator }}</td>
+    </tr>
     {% endfor %}
-    </table>
+</table>
 
 
-    <h1>Users</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>last login</th>
-            <th>joined</th>
-            <th>active</th>
-            <th>change status</th>
-        </tr>
+<h1>Users</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>last login</th>
+        <th>joined</th>
+        <th>active</th>
+        <th>change status</th>
+    </tr>
     {% for user in users %}
-        <tr>
-            <td class="name_of_user" id={{forloop.counter}}>{{ user.username }}</td>
-            <td>{{ user.last_login }}</td>
-            <td>{{ user.date_joined }}</td>
-            <td class="active_status">{{ user.is_active }}</td>
-            <td><button type="submit" class="deactivate">switch</button></td>
-        </tr>
+    <tr>
+        <td class="name_of_user" id={{forloop.counter}}>{{ user.username }}</td>
+        <td>{{ user.last_login }}</td>
+        <td>{{ user.date_joined }}</td>
+        <td class="active_status">{{ user.is_active }}</td>
+        <td>
+            <button type="submit" class="switch_status">switch</button>
+        </td>
+    </tr>
     {% endfor %}
-    </table>
-    <a href="{% url 'add_user' %}">Add user</a>
-    <a href="{% url 'password_change' %}">Change Password</a>
+</table>
+<a href="{% url 'add_user' %}">Add user</a>
+<a href="{% url 'password_change' %}">Change Password</a>
 {% endblock content %}

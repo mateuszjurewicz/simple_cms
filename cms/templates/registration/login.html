@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/cms.css' %}">
 </head>
 <body>
-  <h2>Login</h2>
-  <form method="post">
+<h2>Login</h2>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Login</button>
     <a href="{% url 'register' %}">Register</a>
-  </form>
+</form>
 </body>
 </html>

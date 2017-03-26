@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{% static 'css/cms.css' %}">
     <!-- Link to minified jQuery library-->
-    <script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
     <!-- Link to customized jS script-->
-    <script type="text/javascript" src="{% static 'js/script.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
-    <div class="page-header">
-        <a href="{% url 'add_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">Add Company</span></a>
-        <a href="{% url 'logout' %}">logout</a>
-        <p> Logged in user: {{ request.user.username }}</p>
-    </div>
-    <div class="content container">
+<div class="page-header">
+    <a href="{% url 'add_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">Add Company</span></a>
+    <a href="{% url 'logout' %}">logout</a>
+    <p> Logged in user: {{ request.user.username }}</p>
+</div>
+<div class="content container">
     {% block content %}
     {% endblock %}
-    </div>
+</div>
 </body>
 </html>

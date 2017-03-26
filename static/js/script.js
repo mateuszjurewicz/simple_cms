@@ -29,10 +29,10 @@ $(document).ready(function() {
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
 
-    // Custom functionalities ==========================================================================================
+    // CUSTOM ACTION ==========================================================================================
 
-    // Switch a user's status to inactive
-    $('.deactivate').click(function(event) {
+    // Switch a user's status
+    $('.switch_status').click(function(event) {
         this_user = $(this).parent().parent().find("td:first").text();
 
         // THIS SHOULD BE DONE IN THE SUCCESS FUNCTION
