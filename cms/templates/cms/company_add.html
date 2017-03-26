@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>New company</h1>
+    {% if already_exists == True %}
+        <p>That company is already in our database</p>
+    {% endif %}
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>

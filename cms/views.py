@@ -7,17 +7,25 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 import json
 
+
 # Create your views here.
 @login_required
 def main_list(request):
+    """
+    Main view which renders the main_list template, filling it with user and company data
+    :param request:
+    :return: renders the main_list, passing all companies and users
+    """
     companies = Company.objects.all().order_by('name')
     users = User.objects.all().order_by('username')
     return render(request, 'cms/main_list.html', {'companies': companies, 'users': users})
+
 
 @login_required
 def company_list(request):
     companies = Company.objects.all().order_by('name')
     return render(request, 'cms/company_list.html', {'companies': companies})
+
 
 # Adding new companies
 @login_required
@@ -26,12 +34,20 @@ def add_new(request):
         form = CompanyForm(request.POST)
         if form.is_valid():
             company = form.save(commit=False)
-            company.creator = request.user
-            company.save()
-            return redirect('company_list')
+            # check if the new company isn't already in our database
+            is_repeated = False
+            for existing_company in Company.objects.all():
+                if company.name == existing_company.name:
+                    is_repeated = True
+            if is_repeated:
+                return render(request, 'cms/company_add.html', {'form': form, 'already_exists': True})
+            else:
+                company.creator = request.user
+                company.save()
+                return redirect('company_list')
     else:
         form = CompanyForm()
-    return render(request, 'cms/company_add.html', {'form': form})
+    return render(request, 'cms/company_add.html', {'form': form, 'already_exists': False})
 
 
 # Adding new users
