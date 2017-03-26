@@ -1,0 +1,24 @@
+{% extends 'cms/base.html' %}
+
+{% block content %}
+<h1>Companies</h1>
+<button class="btn btn-primary" type="button" value="New Line" onclick="location.href='{% url 'add_new' %}'">Add Company</button>
+<br/>
+<br/>
+<table class="table table-striped table-hover table-responsive">
+    <tr>
+        <th>Name</th>
+        <th>Stock price</th>
+        <th>Owner</th>
+        <th>Creator</th>
+    </tr>
+    {% for company in companies %}
+    <tr>
+        <td>{{ company.name }}</td>
+        <td>{{ company.stock_price }}$</td>
+        <td>{{ company.owner }}</td>
+        <td>{{ company.creator }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

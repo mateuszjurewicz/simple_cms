@@ -4,8 +4,8 @@ from .forms import CompanyForm
 from .forms import MyUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 import json
-
 
 # Create your views here.
 @login_required
@@ -14,6 +14,10 @@ def main_list(request):
     users = User.objects.all().order_by('username')
     return render(request, 'cms/main_list.html', {'companies': companies, 'users': users})
 
+@login_required
+def company_list(request):
+    companies = Company.objects.all().order_by('name')
+    return render(request, 'cms/company_list.html', {'companies': companies})
 
 # Adding new companies
 @login_required
@@ -24,7 +28,7 @@ def add_new(request):
             company = form.save(commit=False)
             company.creator = request.user
             company.save()
-            return redirect('main_list')
+            return redirect('company_list')
     else:
         form = CompanyForm()
     return render(request, 'cms/company_add.html', {'form': form})
@@ -47,6 +51,8 @@ def add_user(request):
 # Activating and deactivating users (switching is_active status)
 @login_required
 def switch_status(request):
+    # test response
+    response_data = {'is_ok': True}
     if request.method == 'POST':
         to_be_switched = request.POST.get('name_of_user')
         user = User.objects.get(username=to_be_switched)
@@ -54,3 +60,7 @@ def switch_status(request):
             User.objects.filter(username=to_be_switched).update(is_active=False)
         elif not user.is_active:
             User.objects.filter(username=to_be_switched).update(is_active=True)
+    return HttpResponse(
+        json.dumps(response_data),
+        content_type="application/json"
+    )
