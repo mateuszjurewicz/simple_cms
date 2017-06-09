@@ -13,6 +13,9 @@
 <div class="content container">
     <div class="jumbotron">
         <h1>Login</h1>
+        <p><br></p>
+        <p>If this is your first time here, just register a new user<br><b>(no email required)</b><br/></p>
+        <p><br></p>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
